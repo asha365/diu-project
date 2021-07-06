@@ -148,11 +148,11 @@
       <div class="col-md-2"></div>
    
       <div class="col-md-8">
-           <div class="d-flex justify-content-center">
-        <button type="button" id="btn-all" class="btn btn-success">Create</button>
-        <button type="button" id="btn-all" class="btn btn-primary">Read</button>
-        <button type="button" id="btn-all" class="btn btn-warning">Update</button>
-        <button type="button" id="btn-all" class="btn btn-danger">Delete All</button>
+      <div class="d-flex justify-content-center">
+          <button type="button" id="btn-all" class="btn btn-success">Create</button>
+          <button type="button" id="btn-all" class="btn btn-primary">Read</button>
+          <button type="button" id="btn-all" class="btn btn-warning">Update</button>
+          <button type="button" id="btn-all" class="btn btn-danger">Delete All</button>
       </div>
       </div>
 

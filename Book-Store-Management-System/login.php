@@ -17,7 +17,7 @@
         <h1 class="text-center">Welcome to Book Store</h1>
         <h4>Login</h4>
         <?php
-                require('connect.inc.php');
+                require('dbc.php');
 
                 if(isset($_POST['username']) && isset($_POST['password'])){
                  $username = $_POST['username'];

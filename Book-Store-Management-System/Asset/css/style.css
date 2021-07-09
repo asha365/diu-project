@@ -215,10 +215,14 @@ margin-top:-20px;
 
 
 /*---------------*/
-#btn-all{
+#btnId{
 	margin-left: 100px;
 	margin: 2em 0em 0em 7em;
-	
+	font-size: 13px;	
+}
+.d-flex button{
+	margin: 1.5em 0.6em;
+	padding: 0.5em 2.4em;
 }
 
 
@@ -235,7 +239,14 @@ margin-top:-20px;
 	margin-top: 5em;
 	padding: 10px;
 }
-
+.font-edit{
+	color: green;
+	cursor: pointer;
+}
+.font-delete{
+	color: red;
+	cursor: pointer;
+}
 
 
 /*------------------------------------------------------------------------------------------*/

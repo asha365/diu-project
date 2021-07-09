@@ -1,4 +1,7 @@
-
+<?php
+    require_once("../Book-Store-Management-System/php/component.php");
+    require_once("../Book-Store-Management-System/php/operation.php");
+?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,7 +15,7 @@
     <link href="Asset/css/bootstrap.css" rel="stylesheet">
     <link href="Asset/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="Asset/css/all.min.css">
-    <link rel="stylesheet" href="Asset/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
    
@@ -121,19 +124,27 @@
   <section>
     <div class="col-md-12 book">
     <div class="col-md-2"></div>
-    <div class="col-md-8 main-store">
+    <div class="col-sm-6 col-md-8 main-store">
 
-      <h4 class="thamble"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
-        <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-      </svg> Book Store</h4> <br>
+      <h4 class="thamble"><i class="fas fa-book"></i> Book Store</h4> <br><br>
 
 
       <div class="input-form">
-        <form>
-          <input type="text" class="form-control" id="validationCustom01" placeholder="ID" value="ID" required><br><br>
-          <input type="text" class="form-control" id="validationCustom01" placeholder="BOOK NAME" value="BOOK NAME" required><br><br>
-          <input type="text" class="form-control" id="validationCustom01" placeholder="PUBLISHER" value="PUBLISHER" required><br><br>
-          <input type="text" class="form-control" id="validationCustom01" placeholder="PRICE" value="PRICE" required><br><br>
+        <form action="" method="post">
+        <!------------------book form update------------------------>
+          <div class="input-form">
+          <?php inputElement($placeholder="ID",$name="book_id",$value=""); ?>
+          </div>
+          <div class="input-form">
+            <?php inputElement($placeholder="Book Name",$name="book_name",$value=""); ?>
+          </div>
+          <div class="input-form">
+            <?php inputElement($placeholder="Author",$name="book_author",$value=""); ?>
+          </div>
+          <div class="input-form">
+            <?php inputElement($placeholder="Price",$name="book_price",$value=""); ?>
+          </div>
+
         </form>
       </div>
 
@@ -149,10 +160,14 @@
    
       <div class="col-md-8">
       <div class="d-flex justify-content-center">
-          <button type="button" id="btn-all" class="btn btn-success">Create</button>
-          <button type="button" id="btn-all" class="btn btn-primary">Read</button>
-          <button type="button" id="btn-all" class="btn btn-warning">Update</button>
-          <button type="button" id="btn-all" class="btn btn-danger">Delete All</button>
+
+      <div class="d-flex justify-content-center">
+          <?php  buttonElement($btnId="btn-create", $btnClass="btn btn-success", $text="Create", $name="create", $attribute="dat-toggle='tooltip' data-placement='bottom' title='Create'");?>
+          <?php  buttonElement($btnId="btn-refresh", $btnClass="btn btn-primary", $text="Refresh", $name="refresh", $attribute="dat-toggle='tooltip' data-placement='bottom' title='Refresh'");?>
+          <?php  buttonElement($btnId="btn-warning", $btnClass="btn btn-warning", $text="Update", $name="update", $attribute="dat-toggle='tooltip' data-placement='bottom' title='update'");?>
+          <?php  buttonElement($btnId="btn-danger", $btnClass="btn btn-danger", $text="Delete All", $name="Delete All", $attribute="dat-toggle='tooltip' data-placement='bottom' title='Delete All'");?>
+      </div>
+
       </div>
       </div>
 
@@ -179,7 +194,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Book Name</th>
-            <th scope="col">Publisher</th>
+            <th scope="col">Author</th>
             <th scope="col">Book Price</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -188,37 +203,14 @@
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Book1</td>
-            <td>Publisher1</td>
-            <td>200tk</td>
-            <td style="color:rgb(12, 102, 12); font-weight: bold; font-size: 18px;">&#xf044;</td>
-            <td style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-            </svg></td>
+            <td>Book</td>
+            <td>Apoorva Kumar Singh</td>
+            <td>20.23</td>
+            <td class="font-edit"><i class="fas fa-edit"></i></td>
+            <td class="font-delete"><i class="fas fa-trash-alt"></i></td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Book3</td>
-            <td>Publisher3</td>
-            <td>1000tk</td>
-            <td style="color:rgb(12, 102, 12); font-weight: bold; font-size: 18px;">&#xf044;</td>
-            <td style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-            </svg></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Book2</td>
-            <td>Publisher2</td>
-            <td>600tk</td>
-            <td style="color:rgb(12, 102, 12); font-weight: bold; font-size: 18px;">&#xf044;</td>
-            <td style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-            </svg></td>
-          </tr>
+
+
         </tbody>
       </table>
     </div>
